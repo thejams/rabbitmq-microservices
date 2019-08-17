@@ -7,14 +7,13 @@ const rabbitService = new RabbitService('microService01')
 
 app.get('/', async (req, res) =>  {
    if (rabbitService.isConnected()) {
-      console.log('rabbit is connected')
       rabbitService.sendMessage('Greetings from the Micro Service #01', 'microService02')
       res.send('we already send a message to the micro service number 02')
    } else {
       await rabbitService.connectServer()
       if (rabbitService.isConnected()) {
          rabbitService.sendMessage('Greetings from the Micro Service #01 another try', 'microService02')
-         res.send('we already send a message to the micro service number 02')
+         res.send('we send a message to the micro service number 02 after a second reconnect to rabbitmq server')
       } 
       else
          res.send('rabbit is not connected, please try again in a few moments')
