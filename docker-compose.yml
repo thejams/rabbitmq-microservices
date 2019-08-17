@@ -1,0 +1,45 @@
+# docker-compose.yml
+
+version: "3.2"
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitserver
+    expose:
+      - 5672
+      - 15672
+
+  micro01:
+    build: ./micro-service-01
+    tty: true
+    ports:
+      - "5000:5000"
+    volumes:
+      - './micro-service-01:/micro-service-01'
+    links:
+      - rabbitmq
+    environment:
+      - RABBIT_URL=rabbitmq
+    depends_on:
+      - rabbitmq
+
+  micro02:
+    build: ./micro-service-02
+    tty: true
+    ports:
+      - "4000:4000"
+    volumes:
+      - './micro-service-02:/micro-service-02'
+    links:
+      - rabbitmq
+    environment:
+      - RABBIT_URL=rabbitmq
+    depends_on:
+      - rabbitmq
+
+
+# Host volumes used to store code.
+volumes:
+  server:
+  frontend:
