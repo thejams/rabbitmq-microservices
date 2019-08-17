@@ -37,9 +37,4 @@ services:
       - RABBIT_URL=rabbitmq
     depends_on:
       - rabbitmq
-
-
-# Host volumes used to store code.
-volumes:
-  server:
-  frontend:
+      
