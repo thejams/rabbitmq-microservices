@@ -1,0 +1,15 @@
+{
+  "name": "micro-service-01",
+  "version": "1.0.0",
+  "description": "A simple micro service for sending and receiving messages from rabbitMQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jose Montero",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.5.5",
+    "express": "^4.17.1"
+  }
+}
