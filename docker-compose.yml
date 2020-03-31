@@ -17,6 +17,7 @@ services:
       - "5000:5000"
     volumes:
       - './micro-service-01:/micro-service-01'
+      - '/micro-service-01/node_modules'
     links:
       - rabbitmq
     environment:
@@ -31,6 +32,7 @@ services:
       - "4000:4000"
     volumes:
       - './micro-service-02:/micro-service-02'
+      - '/micro-service-02/node_modules'
     links:
       - rabbitmq
     environment:
